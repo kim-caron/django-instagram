@@ -88,8 +88,6 @@ def profile(request, username):
     highlights = person.highlights_set.all()
     followings = person.followings.all()
     followers = person.followers.all()
-    save_articles = person.save_articles.all()
-    tagged_articles = person.tagged_articles.all()
     context = {
         'person' : person,
         'articles' : articles,
@@ -97,8 +95,6 @@ def profile(request, username):
         'highlights' : highlights,
         'followings' : followings,
         'followers' : followers,
-        'save_articles' : save_articles,
-        'tagged_articles' : tagged_articles,
     }
     return render(request, 'accounts/profile.html', context)
 
