@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from accounts import views as accounts_views
+from articles import views as articles_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
-    path('<str:username>/', accounts_views.profile, name='profile'),
-    path('<str:username>/follow/', accounts_views.follow, name='follow'),
+    path('<int:user_pk>/password/', accounts_views.change_password),
+    path('', articles_views.index, name='index'),
+    path('p/', include('articles.urls')),
 ]

@@ -7,7 +7,6 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 from rest_framework.decorators import api_view
 
-# Create your views here.
 def login(request):
     if request.user.is_authenticated():
         return redirect('articles:index')
