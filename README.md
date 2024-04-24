@@ -101,13 +101,31 @@
 </tr>
 <tr>
 <td align="center">로그인<br/>
+<td align="center">accounts/login/<br/>
 <td align="center">기능<br/>
+<td align="center">기능<br/>
+</tr>
+<tr>
+<td align="center">로그아웃<br/>
+<td align="center">accounts/logout/<br/>
+<td align="center">기능<br/>
+<td align="center">기능<br/>
+</tr>
+<tr>
+<td align="center">회원가입<br/>
+<td align="center">accounts/signup/<br/>
+<td align="center">기능<br/>
+<td align="center">기능<br/>
+</tr>
+<tr>
+<td align="center">회원정보 수정<br/>
+<td align="center">accounts/update/<br/>
 <td align="center">기능<br/>
 <td align="center">기능<br/>
 </tr>
 <tr>
 <td align="center">팔로우<br/>
-<td align="center">기능<br/>
+<td align="center">accounts/follow/<br/>
 <td align="center">기능<br/>
 <td align="center">기능<br/>
 </tr>
@@ -123,29 +141,110 @@
 </tr>
 <tr>
 <td align="center">댓글<br/>
-<td align="center">기능<br/>
-<td align="center">기능<br/>
+<td align="center">p/article_key/create_comment/<br/>
+<td align="center">POST<br/>
 <td align="center">기능<br/>
 </tr>
 <tr>
 <td align="center">좋아요<br/>
-<td align="center">기능<br/>
-<td align="center">기능<br/>
-<td align="center">기능<br/>
-</tr>
-<tr>
-<td align="center">상세정보<br/>
-<td align="center">기능<br/>
-<td align="center">기능<br/>
+<td align="center">p/article_key/likes/<br/>
+<td align="center">POST<br/>
 <td align="center">기능<br/>
 </tr>
 <tr>
-<td align="center">스토리<br/>
+<td align="center">컬렉션<br/>
+<td align="center">p/article_key/collections/<br/>
+<td align="center">POST<br/>
 <td align="center">기능<br/>
+</tr>
+<tr>
+<td align="center">게시글 내용<br/>
+<td align="center">p/article_key/<br/>
+<td align="center">GET<br/>
 <td align="center">기능<br/>
+</tr>
+<tr>
+<td align="center">컨텐츠(여러 개)<br/>
+<td align="center">p/article_key/?img_index=[number]/<br/>
+<td align="center">GET<br/>
+<td align="center">기능<br/>
+</tr>
+<tr>
+<td align="center">게시글 삭제<br/>
+<td align="center">p/article_key/delete/<br/>
+<td align="center">POST<br/>
+<td align="center">기능<br/>
+</tr>
+<tr>
+<td align="center">게시글 삭제<br/>
+<td align="center">p/create/<br/>
+<td align="center">POST<br/>
+<td align="center">기능<br/>
+</tr>
+<tr>
+<td align="center">게시글 수정<br/>
+<td align="center">p/article_key/update/<br/>
+<td align="center">POST<br/>
 <td align="center">기능<br/>
 </tr>
 </table>
+
+### 🖼️스토리 기능
+<table> 
+<tr>
+<td align="center">기능<br/>
+<td align="center">URL<br/>
+<td align="center">method<br/>
+<td align="center">return<br/>
+</tr>
+<tr>
+<td align="center">좋아요<br/>
+<td align="center">stories/username/story_pk/likes/<br/>
+<td align="center">POST<br/>
+<td align="center">기능<br/>
+</tr>
+<tr>
+<td align="center">컨텐츠<br/>
+<td align="center">stories/username/story_pk/<br/>
+<td align="center">GET<br/>
+<td align="center">기능<br/>
+</tr>
+<tr>
+<td align="center">답장<br/>
+<td align="center">stories/username/story_pk/direct/<br/>
+<td align="center">POST<br/>
+<td align="center">기능<br/>
+</tr>
+</table>
+
+### 🖼️하이라이트 기능
+<table> 
+<tr>
+<td align="center">기능<br/>
+<td align="center">URL<br/>
+<td align="center">method<br/>
+<td align="center">return<br/>
+</tr>
+<tr>
+<td align="center">컨텐츠<br/>
+<td align="center">stories/highlights/highlight_pk/likes/<br/>
+<td align="center">GET<br/>
+<td align="center">기능<br/>
+</tr>
+<tr>
+<td align="center">좋아요<br/>
+<td align="center">stories/highlights/highlight_pk/likes/<br/>
+<td align="center">POST<br/>
+<td align="center">기능<br/>
+</tr>
+<tr>
+<td align="center">답장<br/>
+<td align="center">stories/highlights/highlight_pk/direct/<br/>
+<td align="center">POST<br/>
+<td align="center">기능<br/>
+</tr>
+</table>
+
 
 
 ## 기능 명세서
@@ -161,14 +260,19 @@
 로그인 화면<br/>
 <td align="left">
 1. 로그인/ 로그아웃<br/>
+2. 회원가입<br/>
 </tr>
 <tr>
 <td align="center">
 홈 화면<br/>
 <td align="left">
 1. 게시물 나열(이미지, 내용, 좋아요, 댓글)<br/>
-2. 팔로잉 중인 인물의 스토리 존재 여부<br/>
-3. 댓글 달기<br/>
+2. 팔로잉 중인 인물의 스토리<br/>
+3. 게시물 댓글 달기<br/>
+4. 게시물 좋아요 기능<br/>
+5. 게시물 컬렉션 저장 기능<br/>
+6. 게시물 보내기 기능<br/>
+7. 팔로잉 하지 않은 유저 추천<br/>
 </tr>
 <tr>
 <td align="center">
@@ -178,6 +282,9 @@
 2. 팔로우, 팔로잉 정보<br/>
 3. 해당 유저의 게시글 목록(이미지, 내용, 좋아요, 댓글)<br/>
 4. 해당 유저의 스토리<br/>
+5. 하이라이트 표시<br/>
+6. 릴스 탭</br>
+7. 태그됨 탭</br>
 </tr>
 </table>
 
