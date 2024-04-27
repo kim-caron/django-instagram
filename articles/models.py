@@ -3,7 +3,7 @@ from django.conf import settings
 from django.utils.crypto import get_random_string
 
 def user_file_path(instance, filename):
-    return f'articles/{instance.article.key}/{instance.order}.jpg'
+    return f'articles/{instance.article.key}/{filename}'
 
 
 class Article(models.Model):
@@ -17,9 +17,9 @@ class Article(models.Model):
     updated_at = models.DateField(auto_now=True)
 
 
-class MediaFile(models.Model):
+class ArticleMediaFile(models.Model):
     order = models.IntegerField()
-    media_file = models.ImageField(upload_to=user_file_path)
+    media_file = models.FileField(upload_to=user_file_path)
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='files')
 
 
