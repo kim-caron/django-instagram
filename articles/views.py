@@ -36,7 +36,7 @@ def likes(request, article_key):
 
 @login_required
 @api_view(['POST'])
-def save(request, article_key):
+def collect(request, article_key):
     pass
 
 @login_required
