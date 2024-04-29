@@ -17,12 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from accounts import views as accounts_views
-from articles import views as articles_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('accounts.urls')),
-    path('<int:user_pk>/password/', accounts_views.change_password),
-    path('', articles_views.index, name='index'),
-    path('p/', include('articles.urls')),
+    # path('api/v1/users/', include('users.urls'))
+    # path('api/v1/media/', include('mediafiles.urls))
+    path('api/v1/web/accounts/', include('accounts.urls')),
+    path('api/v1/web/', include('articles.urls')),
 ]

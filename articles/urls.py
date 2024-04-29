@@ -4,14 +4,10 @@ from . import views
 app_name = 'articles'
 
 urlpatterns = [
-    path('create/', views.create, name='create'),
-    path('<str:article_key>/', views.detail, name='detail'),
-    path('<str:article_key>/update/', views.update, name='update'),
-    path('<str:article_key>/delete/', views.delete, name='delete'),
-    path('<str:article_key>/likes/', views.likes, name='likes'),
-    path('<str:article_key>/collect/', views.collect, name='collect'),
-    path('<str:article_key>/create_comments/', views.create_comments, name='create_comments'),
-    path('<str:article_key>/<int:comment_pk>/like_comments/', views.like_comments, name='like_comments'),
-    path('<str:article_key>/<int:comment_pk>/delete_comments/', views.delete_comments, name='delete_comments'),
-    path('<str:article_key>/<int:comment_pk>/create_subcomments/', views.create_subcomments, name='create_subcomments'),
+    path('p/<int:article_pk>/', views.article_detail_update_delete, name='article_detail_update_delete'),
+    path('likes/<int:article_pk>/like/', views.article_like, name='article_like'),
+    path('save/<int:article_pk>/save/', views.article_save, name='article_save'),
+    path('comments/<int:article_pk>/', views.comment_create_list, name='comment_create_list'),
+    path('comments/<int:article_pk>/<int:comment_pk>/', views.comment_subcreate_detail_update_delete, name='comment_subcreate_detail_update_delete'),
+    path('comments/like/<int:comment_pk>/', views.comment_like, name='comment_like'),
 ]
