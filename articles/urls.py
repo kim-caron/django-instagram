@@ -4,6 +4,7 @@ from . import views
 app_name = 'articles'
 
 urlpatterns = [
+    path('p/', views.article_create_list, name='article_create_list'),
     path('p/<int:article_pk>/', views.article_detail_update_delete, name='article_detail_update_delete'),
     path('likes/<int:article_pk>/like/', views.article_like, name='article_like'),
     path('save/<int:article_pk>/save/', views.article_save, name='article_save'),
