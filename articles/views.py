@@ -10,7 +10,7 @@ from .serializers import ArticleSerializer, ArticleDetailSerializer, ArticleList
 from .serializers import CommentSerializer, CommentListSerializer
 
 @api_view(['GET','POST'])
-def index(request):
+def article_create_list(request):
     if request.method == 'GET':
         User = get_user_model()
         person = User.objects.get(username=request.user)
@@ -24,45 +24,30 @@ def index(request):
             serializer.save()
             return Response(serializer.data,status=status.HTTP_201_CREATED)
 
-
-@login_required
-@api_view(['POST'])
-def create(request):
-    pass
-
 @api_view(['GET','PUT','DELETE'])
-def detail(request, article_key):
+def article_detail_update_delete(request, article_pk):
     if request.method == 'GET':
-        article = get_object_or_404(Article, key=article_key)
+        article = get_object_or_404(Article, key=article_pk)
         serializer = ArticleDetailSerializer(article)
         return Response(serializer.data)
     elif request.method == 'PUT':
-        article = get_object_or_404(Article, key=article_key)
+        article = get_object_or_404(Article, key=article_pk)
         serializer = ArticleSerializer(article, request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(article=article)
             return Response(serializer.data, status=status.HTTP_200_OK)
     else:
-        article = get_object_or_404(Article, key=article_key)
+        article = get_object_or_404(Article, key=article_pk)
         article.delete()
         return Response({
             'message' : f'article : {article.pk} is deleted'
         }, status=status.HTTP_204_NO_CONTENT)
 
-@login_required
-@api_view(['GET', 'PUT'])
-def update(request, article_key):
-    pass
-
-@login_required
-@api_view(['DELETE'])
-def delete(request, article_key):
-    pass
 
 @login_required
 @api_view(['POST'])
-def likes(request, article_key):
-    article = get_object_or_404(Article, key=article_key)
+def article_like(request, article_pk):
+    article = get_object_or_404(Article, key=article_pk)
     if article.like_users.filter(pk=request.user.pk).exists():
         article.like_users.remove(request.user)
         is_liked = False
@@ -76,8 +61,8 @@ def likes(request, article_key):
 
 @login_required
 @api_view(['POST'])
-def collect(request, article_key):
-    article = get_object_or_404(Article, key=article_key)
+def article_save(request, article_pk):
+    article = get_object_or_404(Article, key=article_pk)
     if article.save_users.filter(pk=request.user.pk).exists():
         article.save_users.remove(request.user)
         is_saved = False
@@ -89,21 +74,16 @@ def collect(request, article_key):
     }, status=status.HTTP_200_OK)
 
 @login_required
-@api_view(['POST'])
-def create_comments(request, article_key):
+@api_view(['GET','POST'])
+def comment_create_list(request, article_pk):
     pass
 
 @login_required
-@api_view(['DELETE'])
-def delete_comments(request, article_key, comment_pk):
-    pass
-
-@login_required
-@api_view(['POST'])
-def like_comments(request, article_key, comment_pk):
+@api_view(['GET','POST','PUT','DELETE'])
+def comment_subcreate_detail_update_delete(request, article_pk, comment_pk):
     pass
 
 @login_required
 @api_view(['POST'])
-def create_subcomments(request, article_key, comment_pk):
+def comment_like(request, article_pk, comment_pk):
     pass
