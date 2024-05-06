@@ -21,7 +21,6 @@ class User(AbstractUser):
     name = 본명
     gender = 성별(Null - 밝히고 싶지 않음)
     link = 링크
-    userId = 회원가입 시에 입력 받는 휴대폰 번호나 이메일 정보
     created_at = 계정 생성 날짜
     '''
     followings = models.ManyToManyField('self',symmetrical=False,related_name='followers')
@@ -35,5 +34,4 @@ class User(AbstractUser):
     name = models.CharField(max_length=20, blank=True)
     gender = models.CharField(max_length=10, blank=True)
     link = models.URLField(max_length=200, blank=True)
-    userId = models.CharField(max_length=30)
     created_at = models.DateField(auto_now_add=True)
