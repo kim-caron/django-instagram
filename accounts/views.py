@@ -7,15 +7,14 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 from rest_framework.decorators import api_view
 
-# Create your views here.
 def login(request):
-    if request.user.is_authenticated():
-        return redirect('articles:index')
+    if request.user.is_authenticated:
+        return redirect('index')
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
-            auth_login(request, request.user)
-            return redirect('articles:index')
+            auth_login(request, form.get_user())
+            return redirect('index')
     else:
         form = AuthenticationForm()
     context = {
@@ -82,17 +81,17 @@ def change_password(request, user_pk):
 
 def profile(request, username):
     User = get_user_model()
-    person = User.object.get(username=username)
+    person = User.objects.get(username=username)
     articles = person.article_set.all()
-    stories = person.story_set.filter()
-    highlights = person.highlights_set.all()
+    # stories = person.story_set.filter()
+    # highlights = person.highlights_set.all()
     followings = person.followings.all()
     followers = person.followers.all()
     context = {
         'person' : person,
         'articles' : articles,
-        'stories' : stories,
-        'highlights' : highlights,
+        #'stories' : stories,
+        #'highlights' : highlights,
         'followings' : followings,
         'followers' : followers,
     }

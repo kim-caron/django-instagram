@@ -20,7 +20,8 @@ from accounts import views as accounts_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('accounts.urls')),
-    path('<str:username>/', accounts_views.profile, name='profile'),
-    path('<str:username>/follow/', accounts_views.follow, name='follow'),
+    # path('api/v1/users/', include('users.urls'))
+    # path('api/v1/media/', include('mediafiles.urls))
+    path('api/v1/web/accounts/', include('accounts.urls')),
+    path('api/v1/web/', include('articles.urls')),
 ]
