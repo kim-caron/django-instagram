@@ -7,7 +7,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
         fields = '__all__'
-        read_only_fields = ('user','like_users','save_users',)
+        read_only_fields = ('key','user','like_users','save_users',)
 
 
 class CommentSerializer(serializers.ModelSerializer):

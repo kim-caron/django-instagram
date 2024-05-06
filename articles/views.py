@@ -28,7 +28,6 @@ def article_create_list(request):
 def article_detail_update_delete(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
     if request.method == 'GET':
-        print(article)
         serializer = ArticleDetailSerializer(article)
         return Response(serializer.data)
     elif request.method == 'PUT':
